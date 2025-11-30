@@ -1,0 +1,32 @@
+{% extends 'attendance/base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>Welcome, {{ user.username }}!</h5>
+        <p>Role: {{ profile.role }}</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h6>Quick actions</h6>
+        <div class="d-grid gap-2 d-md-flex">
+          <a class="btn btn-primary me-md-2" href="{% url 'live_frame' %}">Start Live</a>
+          <a class="btn btn-outline-secondary" href="{% url 'attendance:upload' %}">Upload Video</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card text-center">
+      <div class="card-body">
+        <h6>Attendance Summary</h6>
+        <p>Coming soon: quick stats, last session snapshot, etc.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

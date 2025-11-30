@@ -1,0 +1,12 @@
+Django==5.0.3
+djangorestframework==3.15.1
+opencv-python
+face_recognition
+numpy
+Pillow
+reportlab
+django-cors-headers
+channels
+channels-redis
+celery
+redis

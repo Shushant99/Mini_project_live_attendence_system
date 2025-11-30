@@ -1,0 +1,31 @@
+{% extends 'attendance/base.html' %}
+{% block content %}
+
+<h2>Live Attendance</h2>
+<video id="video" width="500" autoplay></video>
+
+<script>
+const video = document.getElementById("video");
+
+navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+    video.srcObject = stream;
+
+    setInterval(() => {
+        let canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext("2d").drawImage(video, 0, 0);
+
+        let data = canvas.toDataURL("image/jpeg");
+
+        fetch("/attendance/live-frame/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ frame: data })
+        });
+
+    }, 800); // every 0.8 sec
+});
+</script>
+
+{% endblock %}
